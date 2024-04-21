@@ -28,7 +28,7 @@ export const sendMessage= async (req,res)=>{
 
         const receiverSocketId=getReceiverSocketId(receiverId)
         if(receiverSocketId){
-            io.to(receiverSocketId).emit("nesMessage",newMessage)
+            io.to(receiverSocketId).emit("newMessage",newMessage)
         }
 
         console.log(newMessage)
