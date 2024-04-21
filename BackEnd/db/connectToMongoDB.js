@@ -3,8 +3,8 @@ import dotenv from"dotenv"
 dotenv.config();
 const connectToMongoDb=async()=>{
     try{
-         await mongoose.connect("mongodb+srv://hakimaitabderrahim18:IBRhPuuF3C577yFt@cluster0.2teupfh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-    
+         await mongoose.connect("mongodb+srv://hakimaitabderrahim18:ByHqerlw9ZVK3EDX@cluster0.iqoratl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+         
          console.log("connected")
     }
     catch(error){

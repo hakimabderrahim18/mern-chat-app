@@ -1,5 +1,6 @@
 import Conversation from '../models/conversationModel.js'
 import Message from '../models/messageModel.js'
+import { getReceiverSocketId, io } from '../socket/socket.js';
 export const sendMessage= async (req,res)=>{
     try{
             const {message}= req.body;
@@ -13,14 +14,23 @@ export const sendMessage= async (req,res)=>{
                 participants:[senderId,receiverId]
             })
            }
-           const newMessage = new Message({senderId,receiverId,message
+           const newMessage = new Message({senderId,receiverId,message,
         })
         if(newMessage){
             conversation.messages.push(newMessage._id)
         }
+
+
+
         await conversation.save();
         await newMessage.save();
         //Promise.all(conversation.save(),newMessage.save())
+
+        const receiverSocketId=getReceiverSocketId(receiverId)
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit("nesMessage",newMessage)
+        }
+
         console.log(newMessage)
       
         

@@ -49,7 +49,9 @@ generateTokenAndSetCookie(user._id,res);
 res.status(200).json({
     fullName:user.fullName,
     userName:user.userName,
-    gender:user.gender
+    gender:user.gender,
+    id:user._id
+    
 })
 }
 catch(err){
